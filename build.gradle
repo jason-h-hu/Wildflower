@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "wildflower.Wildflower"
+applicationDefaultJvmArgs = ["-Djava.library.path=native", "-XstartOnFirstThread"]
+
+repositories {
+  mavenCentral()
+  flatDir {
+    dirs 'libs'
+  }
+}
+
+dependencies {
+  compile "org.lwjgl:lwjgl:3.0.0a"
+  compile "org.lwjgl:lwjgl-platform:3.0.0a:natives-osx"
+  compile "org.joml:joml:1.8.2"
+  compile "org.json:json:20160810"
+  compile name: "radon"
+}
+
+jar {
+  manifest {
+    attributes "Main-Class": "wildflower.Wildflower"
+  }
+}
